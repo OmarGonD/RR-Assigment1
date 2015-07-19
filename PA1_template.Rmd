@@ -286,42 +286,22 @@ Weekdays.plot <- activity.complete %>%
 
 ```
 
-### Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+### So, are there differences in activity patterns between weekdays and weekends?
 
 
-Yes. Wee see some differences in the 5-minute interval:
+##### Yes. And the biggest difference is in late intervals (at nights):
 
-* Interval 500 to 1000: the mean of steps is higher in weekdays. 
+* **Interval 500 to 1000:** the mean of steps is higher in weekdays. 
 
-* Interval 1000 to 1500: The mean of steps is more stable on week days. In weekend days the means are higher, but not so continuos (we can apreciate some peaks on the data). 
+* **Interval 1000 to 1500:** The mean of steps is more stable on week days. In weekend days the means are higher, but not so continuos (we can apreciate some peaks on the data). 
 
-* Interval 1500 to 2000: There is more activity at the end of the day on weekend days than in week days. We can appreciate more volume of steps in this range for Weekend days.  
+* **Interval 1500 to 2000:** There is more activity at the end of the day on weekend days than in week days. We can appreciate more volume of steps in this range for Weekend days.  
 
-
-+ _Weekday days (interval  > 1,500)_
-
-
-```{r echo = F}
-
-
-
-sum(Weekdays.plot$steps_mean[Weekdays.plot$interval > 1500 & Weekdays.plot$Weekday == "Weekday"]) 
-
-
-```
-
-
-+ _Weekend days (interval  > 1,500)_
-
-```{r echo = F}
-
-
-
- sum(Weekdays.plot$steps_mean[Weekdays.plot$interval > 1500 & Weekdays.plot$Weekday == "Weekend"]) 
-
-```
-
-
+    * **_Weekday days (intervals  > 1,500):_** `r round(sum(Weekdays.plot$steps_mean[Weekdays.plot$interval > 1500 & Weekdays.plot$Weekday == "Weekday"]),2)`
+    * **_Weekend days (intervals  > 1,500):_** `r sum(Weekdays.plot$steps_mean[Weekdays.plot$interval > 1500 & Weekdays.plot$Weekday == "Weekend"])`
+    * **_Weekdays and Weekends (invertvals < 1500):_** there is not such a big difference in  the sum of the mean of steps in early hours of the days.
+    Weekdays < 1500: **`r round(sum(Weekdays.plot$steps_mean[Weekdays.plot$interval < 1500 & Weekdays.plot$Weekday == "Weekday"]),2)`** |
+    Weekend days < 1500: **`r round(sum(Weekdays.plot$steps_mean[Weekdays.plot$interval < 1500 & Weekdays.plot$Weekday == "Weekend"]),2)`**
 
 
 

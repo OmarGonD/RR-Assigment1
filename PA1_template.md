@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 _It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the “quantified self” movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data._
 
@@ -98,7 +93,7 @@ Now we can plot the total number of steps taken each day:
 ggplot(data=steps.bydate, aes(steps.bydate$steps.sum)) + geom_histogram(binwidth = 3000)
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
 
 ## Calculate and report the mean and median of the total number of steps taken per day
@@ -156,7 +151,7 @@ ggplot(data=activity.pattern,
     geom_line()
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-9-1.png) 
 
 
 ### Which 5-minute interval, on average across all the days in the dataset contains the maximum number of steps?
@@ -245,7 +240,7 @@ geom_vline(aes(xintercept=mean(steps.sum, na.rm = T)), colour="red", size=0.5, l
 geom_vline(aes(xintercept=median(steps.sum, na.rm = T)), colour="blue", size=0.5, linetype="dashed")     
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-15-1.png) 
 
 
 
@@ -328,35 +323,22 @@ Weekdays.plot <- activity.complete %>%
                  summarise(steps_mean = mean(steps, na.rm = T))
 ```
 
-### Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
+### So, are there differences in activity patterns between weekdays and weekends?
 
 
-Yes. Wee see some differences in the 5-minute interval:
+##### Yes. And the biggest difference is in late intervals (at nights):
 
-* Interval 500 to 1000: the mean of steps is higher in weekdays. 
+* **Interval 500 to 1000:** the mean of steps is higher in weekdays. 
 
-* Interval 1000 to 1500: The mean of steps is more stable on week days. In weekend days the means are higher, but not so continuos (we can apreciate some peaks on the data). 
+* **Interval 1000 to 1500:** The mean of steps is more stable on week days. In weekend days the means are higher, but not so continuos (we can apreciate some peaks on the data). 
 
-* Interval 1500 to 2000: There is more activity at the end of the day on weekend days than in week days. We can appreciate more volume of steps in this range for Weekend days.  
+* **Interval 1500 to 2000:** There is more activity at the end of the day on weekend days than in week days. We can appreciate more volume of steps in this range for Weekend days.  
 
-
-+ _Weekday days (interval  > 1,500)_
-
-
-
-```
-## [1] NA
-```
-
-
-+ _Weekend days (interval  > 1,500)_
-
-
-```
-## [1] NA
-```
-
-
+    * **_Weekday days (intervals  > 1,500):_** 3401.38
+    * **_Weekend days (intervals  > 1,500):_** 5295
+    * **_Weekdays and Weekends (invertvals < 1500):_** there is not such a big difference in  the sum of the mean of steps in early hours of the days.
+    Weekdays < 1500: **6635.58** |
+    Weekend days < 1500: **6702.62**
 
 
 
@@ -369,7 +351,7 @@ ggplot(data = Weekdays.plot, aes(x = interval, y = steps_mean))  +
      facet_grid(Weekday ~ .)
 ```
 
-![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-20-1.png) 
 
 
 
